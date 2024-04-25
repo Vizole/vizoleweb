@@ -58,7 +58,6 @@ export default function ContactUs() {
     const token = submitdata.get("cf-turnstile-response")
     if (token) {
       const userIp = await getUserIp()
-
       const response = await fetch("/api/routes", {
         method: "POST",
         headers: {
@@ -73,15 +72,19 @@ export default function ContactUs() {
       if (success) {
         toast.success("Message sent successfully")
         clearForm()
+        setSubmiting(false)
+        return
       } else {
         toast.error("Something went wrong. Please try again later")
         clearForm()
+        setSubmiting(false)
       }
       if (tokenError) {
         toast.error("Invalid Captcha Token")
         clearForm()
+        setSubmiting(false)
+        return
       }
-      setSubmiting(false)
     } else {
       toast.error("Please complete the captcha")
       setSubmiting(false)
@@ -91,11 +94,7 @@ export default function ContactUs() {
 
   return (
     <div className="mx-auto max-w-screen-md px-4 py-8 lg:py-16">
-      <Script
-        src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onloadTurnstileCallback"
-        defer={true}
-        async={true}
-      ></Script>
+      <Script src="https://challenges.cloudflare.com/turnstile/v0/api.js" defer={true} async={true}></Script>
       <MoveUpWhenVisible>
         <h2 className="mb-4 text-center text-4xl font-extrabold capitalize leading-none tracking-tight text-white md:text-4xl xl:text-5xl">
           Contact Us
