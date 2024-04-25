@@ -12,6 +12,7 @@ import { addAbortListener } from "events"
 interface ResponseData {
   success: boolean
   error: string
+  tokenError: boolean
 }
 
 export default function ContactUs() {
@@ -67,7 +68,7 @@ export default function ContactUs() {
         body: JSON.stringify({ formData, userIp, token }),
       })
 
-      const { success, error } = (await response.json()) as ResponseData
+      const { success, error, tokenError } = (await response.json()) as ResponseData
 
       if (success) {
         toast.success("Message sent successfully")
@@ -76,7 +77,10 @@ export default function ContactUs() {
         toast.error("Something went wrong. Please try again later")
         clearForm()
       }
-
+      if (tokenError) {
+        toast.error("Invalid Captcha Token")
+        clearForm()
+      }
       setSubmiting(false)
     } else {
       toast.error("Please complete the captcha")

@@ -48,6 +48,7 @@ export async function POST(req: any) {
       })
       return NextResponse.json({ success: true })
     }
+    return NextResponse.json({ tokenError: true, error: "Invalid Captcha Token" }, { status: 403 })
   } catch (error: any) {
     console.error(error)
     return NextResponse.json({ error: error.message }, { status: error.status })
