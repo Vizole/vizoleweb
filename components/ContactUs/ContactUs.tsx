@@ -74,10 +74,12 @@ export default function ContactUs() {
         clearForm()
         setSubmiting(false)
         return
-      } else {
+      }
+      if (!success) {
         toast.error("Something went wrong. Please try again later")
         clearForm()
         setSubmiting(false)
+        return
       }
       if (tokenError) {
         toast.error("Invalid Captcha Token")

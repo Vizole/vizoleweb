@@ -13,9 +13,9 @@ const Navbar: React.FC<NavbarProps> = ({ logoSrc }) => {
   const TOP_OFFSET = 50
 
   const navLinks = {
-    home: "#home",
-    services: "#services",
-    portfolio: "#portfolio",
+    home: "/#home",
+    services: "/#services",
+    portfolio: "/#portfolio",
     aboutUs: "#aboutUs",
     signIn: "/auth/SignIn",
     signUp: "/auth/SignUp",
