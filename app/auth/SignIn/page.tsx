@@ -75,7 +75,7 @@ export default function SignIn() {
               </button>
               <button className=" border-conic-gradient relative m-2 inline-flex h-9 w-full items-center justify-around rounded-full border-[1px]   border-transparent bg-gradient-to-br from-gray-900 to-gray-800 px-4 py-1 text-white transition-all">
                 <AiFillApple className="text-lg" />
-                Sign In With Icloud
+                Sign In With Apple ID
               </button>
             </div>
           </div>
